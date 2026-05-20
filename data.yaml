@@ -1,0 +1,10 @@
+# Ścieżka główna do folderu z projektem 
+path: D:/DetekcjaKaucji/dataset 
+
+# Ścieżki do zdjęć treningowych i walidacyjnych (wewnątrz folderu dataset)
+train: images/train
+val: images/val
+
+# Definicja klas
+nc: 1                  # Liczba klas i nazwa
+names: ['kaucja'] 

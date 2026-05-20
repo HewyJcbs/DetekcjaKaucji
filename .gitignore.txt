@@ -1,0 +1,9 @@
+# Ignoruj pobrane wagi modeli (duże pliki)
+*.pt
+
+# Ignoruj folder z wynikami treningów i testów
+runs/
+testy_kaucji/
+
+#ignoruj zbiór danych
+dataset/
