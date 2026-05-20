@@ -26,6 +26,13 @@ def main():
         plots=True           # Wygeneruj wykresy skuteczności - do sprawozdania konieczne, aby sprawdzić jak działa
     )
     
+    '''
+    TO DO:
+    - zwiększyć rozmiar obrazu,
+    - DODAĆ AUGMENTACJĘ,
+    - zwiększyć batch size,
+    - zmienić model z nano na inny (np. small)
+    '''
     print("Zakończono trening")
 
 if __name__ == "__main__":
