@@ -1,39 +1,44 @@
 from ultralytics import YOLO
 
-'''
-STRUKTURA FOLDEROW (podział 80/20)
-
-dataset/
-├── images/
-│   ├── train/ (tu 80 zdjęć)
-│   └── val/   (tu 20 zdjęć)
-└── labels/
-    ├── train/ (tu 80 plików .txt)
-    └── val/   (tu 20 plików .txt)
-'''
 def main():
-    #Zastosowano Transfer Learning - zbyt mała baza danych aby od początku stawiać wlasny model
-    model = YOLO("yolov8n.pt") #wersja nano
+    model = YOLO("yolov8s.pt") 
 
-    # Uruchomienie procesu szkolenia - potem dodać augmentacje danych
     results = model.train(
-        data="data.yaml",    # Ścieżka do stworzonego wcześniej pliku YAML
-        epochs=25,          # Liczba epok - liczba przejść modelu przez grupę zdjęć
-        imgsz=640,          # Rozmiar obrazu
-        batch=8,            # Rozmiar paczki - ile zdjęć na jedną grupę/krok
-        device="0",          # szkolenie na karcie (jeżeli nie działa to sprawdzić wersję biblioteki lub szkolić na cpu ('cpu'))
-        workers=2,           # Liczba wątków procesora do ładowania danych
-        plots=True           # Wygeneruj wykresy skuteczności - do sprawozdania konieczne, aby sprawdzić jak działa
+        data="data.yaml",
+        
+        epochs=150,          
+        imgsz=1024,
+        batch=32,
+        device=0,            
+        workers=4,           
+        plots=True,
+        deterministic=True,  
+
+        degrees=20.0,
+        scale=0.5,
+        translate=0.1,
+        shear=3.0,
+        perspective=0.0005,
+        fliplr=0.5,
+        flipud=0.0, 
+        
+        hsv_h=0.015,         
+        hsv_s=0.6,           
+        hsv_v=0.4
+        
+        mosaic=1.0,
+        mixup=0.0,
+        close_mosaic=15,
+        
+        lr0=0.01,            
+        lrf=0.01,            
+        cos_lr=True,         
+        weight_decay=0.0005, 
+        warmup_epochs=3.0,   
+        patience=35
     )
     
-    '''
-    TO DO:
-    - zwiększyć rozmiar obrazu,
-    - DODAĆ AUGMENTACJĘ,
-    - zwiększyć batch size,
-    - zmienić model z nano na inny (np. small)
-    '''
-    print("Zakończono trening")
+    print("Zakończono optymalny trening.")
 
 if __name__ == "__main__":
     main()
